@@ -17,12 +17,19 @@ const server = http.createServer((req, res) => {
 		'menu': 'menu.html',
         'blog': 'blog.html',
         'contact': 'contact.html',
-        'admin': 'login.html'
+		'admin': 'login.html',
+		'admin/?role=admin': 'hi.html'
 	}
 
-	render(res, routeMap[req.url.slice(1)]);
+    render(res, routeMap[req.url.slice(1)]);
+    // style();
 });
-
+//  function style(){
+//     app.use(express.static(__dirname, '/public'));
+//     app.get('/',function(req,res){
+//     res.sendFile(path.join(__dirname,'/index.html'));
+//     });
+//  }
 function render(res, htmlFile) {
   	fs.stat(`./${htmlFile}`,  (err, stats) => {
 		res.statusCode = 200;
