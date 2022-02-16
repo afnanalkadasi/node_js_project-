@@ -29,20 +29,24 @@ app.get('/menu', (req, res) => {
 app.get('/contact', (req, res) => {
     res.sendFile(path.join(initial_path, "contact.html"));
 })
+
 app.get('/admin', (req, res) => {
+   
+    if (req.url.includes("?role")) {
+        if (req.query.role.toLocaleLowerCase() == 'admin')
+            res.sendFile(path.join(initial_path, "hi.html"));
+        else
+            res.sendFile(path.join(initial_path, "index.html"));
+    } 
+    else
     res.sendFile(path.join(initial_path, "login.html"));
+
 })
-app.get('/admin?role=admin', (req, res) => {
-    res.sendFile(path.join(initial_path, "hi.html"));
-})
-app.get('/admin?role=*', (req, res) => {
-    res.sendFile(path.join(initial_path, "index.html"));
-})
+
 app.get('*', (req, res) => {
 	res.statusCode = 404;
   			res.end(' Sorry, page not found');
 })
-
 // upload link
 app.post('/upload', (req, res) => {
     let file = req.files.image;
