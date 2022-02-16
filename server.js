@@ -33,7 +33,7 @@ app.get('/admin', (req, res) => {
         if (req.query.role.toLocaleLowerCase() == 'admin')
             res.sendFile(path.join(initial_path, "hi.html"));
         else
-            res.sendFile(path.join(initial_path, "index.html"));
+            res.sendFile(path.join(initial_path, "login.html"));
     } 
     else
     res.sendFile(path.join(initial_path, "login.html"));
@@ -45,8 +45,8 @@ app.get('*', (req, res) => {
   			res.end(' Sorry, page not found');
 })
 
+const port=process.env.PORT || 4000
 
-
-app.listen("4000", () => {
+app.listen(port, () => {
     console.log('Server running at http://127.0.0.1:4000');
 })
